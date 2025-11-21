@@ -104,7 +104,6 @@
         .header-content {
             position: relative; z-index: 10; padding: 20px;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            /* [修改] 移除了下移 transform，恢复默认居中 */
         }
 
         .hero-logo { 
@@ -133,7 +132,6 @@
         .header-info-text {
             color: white; 
             font-family: var(--font-main); font-weight: bold; 
-            /* [修改] 字号改为 2.1rem */
             font-size: 2.1rem; 
             margin-bottom: 20px; 
             letter-spacing: 2px;
@@ -388,7 +386,7 @@
 
             <p style="color: #ccc; margin-top: 10px; font-size: 1.1rem; line-height: 1.6;"> 
                 CN赛区 VCT 官方指定下榻点<br> 
-                全屋实装 RYZEN 9800X3D | Zowie 540Hz | 0延迟接入 
+                全屋实装 RTX 5080 | Zowie 540Hz | 0延迟接入 
             </p>
         </div>
     </header> 
@@ -424,7 +422,7 @@
         <div class="cards-grid"> 
             <div class="card"> 
                 <div class="card-img-box">      
-                    <img src="images/room_single.jpg" alt="Single Room" onerror="this.style.display='none'"> 
+                    <img src="room_single.jpg" alt="Single Room" onerror="this.style.display='none'"> 
                 </div> 
                 <div class="card-content"> 
                     <h3>决斗者单人舱</h3> 
@@ -439,7 +437,7 @@
             </div> 
             <div class="card"> 
                 <div class="card-img-box">      
-                    <img src="images/room_double.jpg" alt="Double Room" onerror="this.style.display='none'"> 
+                    <img src="room_double.jpg" alt="Double Room" onerror="this.style.display='none'"> 
                 </div> 
                 <div class="card-content"> 
                     <h3>双子星协议房</h3> 
@@ -454,7 +452,7 @@
             </div> 
             <div class="card"> 
                 <div class="card-img-box"> 
-                    <img src="images/room_team.jpg" alt="Team Room" onerror="this.style.display='none'"> 
+                    <img src="room_team.jpg" alt="Team Room" onerror="this.style.display='none'"> 
                 </div> 
                 <div class="card-content"> 
                     <h3>战术小队五黑套房</h3> 
@@ -617,28 +615,32 @@
                 desc: "极致的个人表现舞台。专为Rank战士打造的私密空间。", 
                 price: "¥ 439 / NIGHT", 
                 specs: ["> GPU: NVIDIA RTX 5080 16GB", "> Monitor: ZOWIE XL2586X (540Hz)", "> CPU: Intel i9-16900K", "> Acc: 罗技/雷蛇全家桶可选"], 
-                img: "images/room_single.jpg" 
+                // [修改] 路径
+                img: "room_single.jpg" 
             }, 
             'double': { 
                 title: "双子星协议房", 
                 desc: "背靠背坐席设计，100%战术同步率。含双子补给包。", 
                 price: "¥ 879 / NIGHT", 
                 specs: ["> 2x RTX 5080 Stations", "> 2x ROG Swift OLED PG27AQDP", "> Console: PS6 (Optional)", "> 赠送minibar特调两杯"], 
-                img: "images/room_double.jpg" 
+                // [修改] 路径
+                img: "room_double.jpg" 
             }, 
             'team': { 
                 title: "战术小队五黑套房", 
                 desc: "完整的战队训练环境。备战网吧赛的最佳基地。", 
                 price: "¥ 2,799 / NIGHT", 
                 specs: ["> 5x RTX 5080 Ti (24GB)", "> Monitor: ZOWIE XL2586X", "> 100寸 战术复盘屏", "> 专属网络节点"], 
-                img: "images/room_team.jpg" 
+                // [修改] 路径
+                img: "room_team.jpg" 
             },
             'sunset': { 
                 title: "主题房：日落之城 / SUNSET", 
                 desc: "洛杉矶风格，橙紫渐变霓虹，餐车风格吧台与滑板元素装饰。", 
                 price: "¥ 1,299 / NIGHT", 
                 specs: ["> Theme: LA Sunset", "> GPU: RTX 5080", "> Monitor: ROG 360Hz OLED", "> Gift: 盖克限定周边"], 
-                img: "images/room_sunset.jpg",
+                // [修改] 路径
+                img: "room_sunset.jpg",
                 color: "#ff7b00"
             }, 
             'split': { 
@@ -646,7 +648,8 @@
                 desc: "极致赛博朋克，高低差错层设计，日式科技风。", 
                 price: "¥ 1,299 / NIGHT", 
                 specs: ["> Theme: Cyberpunk Japan", "> GPU: RTX 5080", "> Monitor: ZOWIE XL2586X", "> Gift: 2026冠军扇"], 
-                img: "images/room_split.jpg",
+                // [修改] 路径
+                img: "room_split.jpg",
                 color: "#21e6c1"
             }, 
             'haven': { 
@@ -654,7 +657,8 @@
                 desc: "东南亚寺庙风格，木质结构与现代电竞的融合。", 
                 price: "¥ 1,299 / NIGHT", 
                 specs: ["> Theme: Temple & Zen", "> GPU: RTX 5080", "> Monitor: ROG 360Hz OLED", "> Gift: 禅意茶具套装"], 
-                img: "images/room_haven.jpg",
+                // [修改] 路径
+                img: "room_haven.jpg",
                 color: "#d45757"
             }, 
             'bind': { 
@@ -662,7 +666,8 @@
                 desc: "还原 A 小道的沙漠风情。设有传送门灯光装置。", 
                 price: "¥ 1,299 / NIGHT", 
                 specs: ["> Theme: Desert Tech", "> GPU: RTX 5080", "> Monitor: ZOWIE XL2586X", "> Gift: 限定键帽"], 
-                img: "images/room_bind.jpg",
+                // [修改] 路径
+                img: "room_bind.jpg",
                 color: "#dfae47"
             }, 
             'icebox': { 
@@ -670,7 +675,8 @@
                 desc: "全屋冷色调氛围灯，工业金属风家具，极地体验。", 
                 price: "¥ 1,299 / NIGHT", 
                 specs: ["> Theme: Snow & Metal", "> GPU: RTX 5080", "> Monitor: ZOWIE XL2586X", "> Gift: 企鹅玩偶"], 
-                img: "images/room_icebox.jpg",
+                // [修改] 路径
+                img: "room_icebox.jpg",
                 color: "#5ebec9"
             }, 
             'lotus': { 
@@ -678,7 +684,8 @@
                 desc: "石质纹理墙面与粉色莲花光影，带来平静而专注的竞技心流。", 
                 price: "¥ 1,299 / NIGHT", 
                 specs: ["> Theme: Ruins & Flower", "> GPU: RTX 5080", "> Monitor: ROG 360Hz OLED", "> Gift: 莲花挂饰"], 
-                img: "images/room_lotus.jpg",
+                // [修改] 路径
+                img: "room_lotus.jpg",
                 color: "#e967a5"
             } 
         }; 
