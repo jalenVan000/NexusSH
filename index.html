@@ -1,0 +1,833 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS 2026 | 无畏充能站 - 上海</title>
+    <style>
+        :root {
+            --color-bg: #0f172a;
+            --color-dark: #050505;
+            --color-cyan: #0ff;
+            --color-pink: #ff4655;
+            --color-purple: #bd00ff;
+            --color-gold: #ffd700;
+            --color-green: #00ff9d;
+            --color-blue: #00d2ff;
+            --color-text: #ffffff;
+            --font-main: 'Courier New', Courier, monospace;
+            --font-ui: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--color-dark);
+            color: var(--color-text);
+            font-family: var(--font-ui);
+            overflow-x: hidden;
+            padding-bottom: 50px;
+        }
+
+        /* --- 动画背景 --- */
+        .cyber-grid {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                linear-gradient(transparent 95%, rgba(0, 255, 255, 0.05) 50%),
+                linear-gradient(90deg, transparent 95%, rgba(189, 0, 255, 0.05) 50%);
+            background-size: 40px 40px;
+            z-index: -1;
+            transform: perspective(500px) rotateX(60deg) translateY(-100px) scale(2);
+            animation: gridMove 20s linear infinite;
+        }
+        @keyframes gridMove {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0) scale(2); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(40px) scale(2); }
+        }
+
+        /* --- 导航栏 --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(0,0,0,0.9);
+            border-bottom: 1px solid var(--color-cyan);
+            position: sticky; top: 0; z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-left { display: flex; align-items: center; flex: 1; }
+        .nav-home-link { display: flex; align-items: center; gap: 15px; text-decoration: none; cursor: pointer; }
+        .nav-logo img { height: 40px; vertical-align: middle; }
+        .nav-text { 
+            font-family: var(--font-main); font-weight: 900; font-size: 1.4rem; letter-spacing: 1px; color: white; 
+            text-transform: uppercase; font-style: italic; 
+        }
+        .nav-text span { color: var(--color-pink); }
+        
+        .nav-links { display: flex; align-items: center; justify-content: center; flex: 3; }
+        .nav-links a { 
+            color: #aaa; text-decoration: none; margin: 0 15px; 
+            font-family: var(--font-main); font-size: 0.9rem; font-weight: bold; transition: 0.3s; 
+        }
+        .nav-links a:hover { color: var(--color-cyan); text-shadow: 0 0 10px var(--color-cyan); }
+
+        .nav-right { flex: 1; display: flex; justify-content: flex-end; }
+        .login-btn {
+            padding: 8px 24px; background: transparent; border: 1px solid var(--color-cyan);
+            color: var(--color-cyan); font-family: var(--font-main); font-weight: bold; font-size: 0.9rem;
+            cursor: pointer; transition: 0.3s; text-decoration: none; display: inline-block;
+        }
+        .login-btn:hover { background: var(--color-cyan); color: black; box-shadow: 0 0 15px var(--color-cyan); }
+
+        /* --- 首页 Hero --- */
+        header {
+            position: relative; height: 100vh; width: 100%;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            text-align: center; overflow: hidden; background-color: transparent;
+        }
+
+        .header-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://www.10wallpaper.com/wallpaper/3840x2400/1911/Shanghai_Lujiazui_Landmark_Night_HD_Photography_3840x2400.jpg');
+            background-size: cover; background-position: center; z-index: 0;
+            filter: brightness(0.9) contrast(1.1);
+            mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+        }
+        
+        .header-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 100%); z-index: 1;
+        }
+
+        .header-content {
+            position: relative; z-index: 10; padding: 20px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            /* [修改] 移除了下移 transform，恢复默认居中 */
+        }
+
+        .hero-logo { 
+            width: 300px; height: auto; margin-bottom: 30px; 
+            filter: drop-shadow(0 0 25px var(--color-cyan)); animation: float 6s ease-in-out infinite; 
+        }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } } 
+        h1 { 
+            font-size: 4.5rem; text-transform: uppercase; font-weight: 900; 
+            margin-bottom: 5px; letter-spacing: -2px; text-shadow: 0 5px 20px rgba(0,0,0,0.8); 
+            line-height: 1;
+        } 
+        
+        .hero-subtitle {
+            font-family: var(--font-main);
+            font-size: 2.5rem;
+            color: var(--color-cyan);
+            letter-spacing: 8px;
+            margin-bottom: 20px;
+            font-weight: 300;
+            text-transform: uppercase;
+            opacity: 0.9;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+        }
+
+        .header-info-text {
+            color: white; 
+            font-family: var(--font-main); font-weight: bold; 
+            /* [修改] 字号改为 2.1rem */
+            font-size: 2.1rem; 
+            margin-bottom: 20px; 
+            letter-spacing: 2px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        /* --- About Nexus 板块 --- */
+        .about-section {
+            padding: 100px 20px; 
+            background: transparent; 
+            text-align: center; position: relative; border-bottom: 1px solid #333;
+        }
+        .about-container { max-width: 900px; margin: 0 auto; position: relative; z-index: 2; }
+        .about-title {
+            font-size: 3rem; font-weight: 900; color: white; text-transform: uppercase;
+            margin-bottom: 40px; letter-spacing: 2px; display: flex; justify-content: center; align-items: center; gap: 20px;
+        }
+        .about-title::before, .about-title::after {
+            content: ''; display: block; width: 60px; height: 4px;
+            background: var(--color-cyan); box-shadow: 0 0 10px var(--color-cyan);
+        }
+        .about-text { font-size: 1.1rem; line-height: 2; color: #ccc; font-family: var(--font-ui); margin-bottom: 30px; }
+        .about-mission {
+            display: inline-block; background: rgba(189, 0, 255, 0.1);
+            border: 1px solid var(--color-purple); padding: 30px; margin-top: 20px; border-radius: 4px; position: relative;
+        }
+        .corner-deco { position: absolute; width: 10px; height: 10px; border: 2px solid var(--color-purple); transition: 0.3s; }
+        .tl { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+        .tr { top: -1px; right: -1px; border-left: none; border-bottom: none; }
+        .bl { bottom: -1px; left: -1px; border-right: none; border-top: none; }
+        .br { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+        .about-mission:hover .corner-deco { width: 100%; height: 100%; opacity: 0.5; }
+
+        /* --- 通用板块 --- */
+        .section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { 
+            font-size: 2.5rem; margin-bottom: 40px; border-left: 8px solid var(--color-cyan); 
+            padding-left: 20px; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center; 
+        }
+
+        /* --- 房型卡片 --- */
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; } 
+        .card { background: #111; border: 1px solid #333; position: relative; overflow: hidden; transition: 0.3s; display: flex; flex-direction: column; } 
+        .card:hover { border-color: var(--color-pink); transform: translateY(-5px); } 
+        .card-img-box { width: 100%; height: 220px; background: #222; overflow: hidden; position: relative; border-bottom: 1px solid #333; display: flex; align-items: center; justify-content: center; } 
+        .card-img-box img { width: 100%; height: 100%; object-fit: cover; } 
+        .card-content { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; } 
+        .card h3 { font-size: 1.4rem; color: white; margin-bottom: 10px; } 
+        .specs-box { background: rgba(0, 255, 255, 0.05); padding: 10px; margin: 15px 0; border: 1px dashed var(--color-cyan); font-family: var(--font-main); font-size: 0.8rem; color: var(--color-cyan); } 
+        .book-btn { margin-top: auto; width: 100%; padding: 12px; background: transparent; color: var(--color-pink); border: 1px solid var(--color-pink); cursor: pointer; font-weight: bold; transition: 0.3s; text-transform: uppercase; } 
+        .book-btn:hover { background: var(--color-pink); color: white; } 
+
+        /* --- 地图房 Carousel --- */
+        .carousel-wrapper { position: relative; width: 100%; height: 550px; display: flex; justify-content: center; align-items: center; perspective: 1200px; overflow: visible; flex-direction: column; } 
+        .carousel-nav { position: absolute; top: 50%; transform: translateY(-50%); font-size: 3rem; color: #555; cursor: pointer; z-index: 100; transition: 0.3s; user-select: none; background: rgba(0,0,0,0.5); padding: 10px; } 
+        .carousel-nav:hover { color: var(--color-cyan); background: black; } 
+        .nav-prev { left: 0px; } 
+        .nav-next { right: 0px; } 
+        
+        .carousel-counter {
+            margin-top: 20px; font-family: var(--font-main); font-size: 1.2rem; font-weight: bold;
+            color: #555; letter-spacing: 2px; z-index: 50; position: absolute; bottom: 20px;
+        }
+        .carousel-counter span { color: var(--color-cyan); }
+
+        .c-card { position: absolute; width: 850px; height: 450px; background: #111; border: 1px solid #333; transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.5s, z-index 0s; box-shadow: 0 20px 50px rgba(0,0,0,0.8); display: flex; } 
+        .c-card-img { width: 65%; height: 100%; background: #222; position: relative; overflow: hidden; } 
+        .c-card-img img { width: 100%; height: 100%; object-fit: cover; } 
+        .c-card-info { width: 35%; padding: 30px 20px; display: flex; flex-direction: column; justify-content: center; border-left: 1px solid #333; } 
+        .c-card h3 { font-size: 1.6rem; margin-bottom: 10px; text-transform: uppercase; line-height: 1.1; } 
+        .c-card p { color: #888; margin-bottom: 15px; font-size: 0.85rem; line-height: 1.4; } 
+        .c-specs { font-family: var(--font-main); font-size: 0.75rem; margin-bottom: 20px; padding: 8px; background: rgba(255,255,255,0.05); } 
+        .c-card.active { opacity: 1; z-index: 10; transform: translateX(0) scale(1); border-color: var(--color-cyan); box-shadow: 0 0 40px rgba(0, 255, 255, 0.15); } 
+        .c-card.prev { opacity: 0.6; z-index: 5; transform: translateX(-25%) scale(0.85) translateZ(-50px); filter: brightness(0.6); pointer-events: none; } 
+        .c-card.next { opacity: 0.6; z-index: 5; transform: translateX(25%) scale(0.85) translateZ(-50px); filter: brightness(0.6); pointer-events: none; } 
+        .c-card.hidden { opacity: 0; z-index: 0; transform: scale(0.5); pointer-events: none; } 
+
+        @media (max-width: 768px) { 
+            nav { flex-direction: column; gap: 20px; padding: 20px; } 
+            .nav-links { flex-wrap: wrap; justify-content: center; } 
+            .nav-left, .nav-right { justify-content: center; flex: auto; } 
+            .c-card { width: 90%; height: auto; flex-direction: column; } 
+            .c-card-img { width: 100%; height: 250px; } 
+            .c-card-info { width: 100%; } 
+            .carousel-wrapper { height: 600px; } 
+            .c-card.prev, .c-card.next { opacity: 0; }  
+            .about-title { font-size: 2rem; }
+            .about-title::before, .about-title::after { width: 30px; }
+            h1 { font-size: 3.5rem; }
+            .hero-subtitle { font-size: 1.2rem; letter-spacing: 4px; }
+        } 
+
+        /* --- 会员 & 餐饮 & 外设 --- */
+        .membership-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; } 
+        .member-card { padding: 40px; position: relative; border: 1px solid #444; background: #0a0a0a; overflow: hidden; } 
+        .member-card.vip { border: 2px solid var(--color-gold); background: linear-gradient(135deg, #1a1500 0%, #000 100%); } 
+        .member-card.pass { border: 2px solid var(--color-green); background: linear-gradient(135deg, #001a10 0%, #000 100%); } 
+        .member-title { font-size: 2rem; font-weight: 900; margin-bottom: 10px; text-transform: uppercase; } 
+        .member-price { font-size: 2.5rem; font-family: var(--font-main); margin-bottom: 20px; display: block;} 
+        .member-list { list-style: none; margin-bottom: 30px; } 
+        .member-list li { margin-bottom: 10px; color: #ccc; display: flex; align-items: center; } 
+        .member-list li::before { content: '>'; margin-right: 10px; font-weight: bold; } 
+        .vip .member-list li::before { color: var(--color-gold); } 
+
+        .dining-container { display: flex; flex-wrap: wrap; gap: 20px; } 
+        .dining-box { flex: 1; min-width: 300px; background: #111; padding: 30px; border-left: 5px solid var(--color-purple); } 
+        .menu-item { display: flex; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px dashed #333; padding-bottom: 5px; } 
+        .menu-name { color: white; } 
+        .menu-desc { color: #666; font-size: 0.8rem; } 
+
+        /* --- 赛后理疗室样式 --- */
+        .recovery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .recovery-card {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 4/3; /* 横向 4:3 */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; /* 文字沉底 */
+            padding: 30px;
+            text-align: left;
+            background-size: cover;
+            background-position: center;
+            border: 1px solid #333;
+            transition: 0.3s;
+        }
+        .recovery-card:hover {
+            border-color: var(--color-blue);
+            box-shadow: 0 10px 30px rgba(0, 210, 255, 0.2);
+            transform: translateY(-5px);
+        }
+        /* 图片遮罩 */
+        .recovery-card::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.95) 100%);
+            z-index: 1;
+            transition: 0.3s;
+        }
+        .recovery-card:hover::after {
+            background: linear-gradient(to bottom, transparent 30%, rgba(0, 26, 31, 0.95) 100%);
+        }
+
+        .rec-content-wrapper { position: relative; z-index: 2; }
+        
+        .rec-title { font-size: 1.3rem; color: white; margin-bottom: 8px; font-weight: 900; text-shadow: 0 2px 4px black; }
+        .rec-desc { color: #ddd; font-size: 0.85rem; line-height: 1.5; text-shadow: 0 1px 2px black; }
+
+        .gear-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; } 
+        .gear-item { background: #0a0a0a; border: 1px solid #444; padding: 15px; text-align: center; transition: 0.2s; } 
+        .gear-item:hover { border-color: var(--color-green); box-shadow: 0 0 15px rgba(0, 255, 157, 0.2); } 
+        .gear-name { font-size: 0.9rem; color: white; margin-bottom: 5px; } 
+        .gear-price { font-family: var(--font-main); color: var(--color-green); font-size: 0.9rem; font-weight: bold; } 
+        .view-more-btn { display: block; margin: 30px auto 0; padding: 10px 40px; border: 1px solid var(--color-green); color: var(--color-green); background: transparent; cursor: pointer; font-family: var(--font-main); text-transform: uppercase; transition: 0.3s; } 
+        .view-more-btn:hover { background: var(--color-green); color: black; } 
+
+        /* --- 弹窗 --- */
+        #booking-modal { 
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.95); z-index: 1000; justify-content: center; align-items: center; 
+        } 
+        .modal-panel { 
+            width: 95%; max-width: 1100px; 
+            background: #161616; border: 2px solid var(--color-cyan); 
+            display: grid; grid-template-columns: 1.8fr 1fr;  
+            position: relative; 
+            box-shadow: 0 0 60px rgba(0, 255, 255, 0.15); 
+        } 
+        .modal-img { 
+            background: #222; height: 100%; min-height: 450px; position: relative; overflow: hidden; 
+            border-right: 1px solid #333; 
+        } 
+        .modal-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 0.3s ease; } 
+        .modal-info { padding: 40px; display: flex; flex-direction: column; justify-content: center; position: relative; } 
+        .close-btn { position: absolute; top: 10px; right: 20px; font-size: 2rem; color: #555; cursor: pointer; z-index: 10; } 
+        .modal-price { font-size: 2.5rem; color: var(--color-gold); margin: 20px 0; font-family: var(--font-main); } 
+        .confirm-btn { 
+            padding: 20px; background: var(--color-pink); color: white; font-size: 1.2rem; font-weight: bold; 
+            border: none; cursor: pointer; text-transform: uppercase; margin-top: 20px; 
+            clip-path: polygon(5% 0, 100% 0, 100% 70%, 95% 100%, 0 100%, 0 30%); 
+        } 
+        .confirm-btn:hover { background: #d13644; } 
+
+        /* 弹窗内部切换按钮 */
+        .modal-nav-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            font-size: 3rem; color: #333; cursor: pointer; z-index: 50;
+            background: rgba(0,0,0,0.2); padding: 10px; transition: 0.3s;
+            user-select: none;
+        }
+        .modal-nav-btn:hover { color: var(--color-cyan); background: #000; }
+        .modal-prev { left: -60px; }
+        .modal-next { right: -60px; }
+        
+        /* 内容淡入淡出动画类 */
+        .fade-anim { animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 1300px) {
+            .modal-prev { left: 10px; color: white; background: rgba(0,0,0,0.5); }
+            .modal-next { right: 10px; color: white; background: rgba(0,0,0,0.5); }
+        }
+
+        #match-found-overlay { 
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(15, 23, 42, 0.98); z-index: 2000; flex-direction: column; justify-content: center; align-items: center; 
+        } 
+        .match-text { 
+            font-size: 5vw; font-weight: 900; color: var(--color-cyan); text-transform: uppercase; 
+            letter-spacing: 5px; text-shadow: 0 0 20px var(--color-cyan); animation: pulse 0.5s infinite alternate; 
+        } 
+        @keyframes pulse { from { opacity: 0.8; } to { opacity: 1; text-shadow: 0 0 40px var(--color-cyan); } } 
+    </style> </head> <body> 
+    
+    <div class="cyber-grid"></div> 
+    
+    <nav> 
+        <div class="nav-left"> 
+            <a href="#" class="nav-home-link">
+                <div class="nav-logo"> 
+                    <img src="nexus_logo.jpg" alt="NEXUS" onerror="this.style.display='none'"> 
+                </div> 
+                <div class="nav-text">NEXUS<span>SH</span></div> 
+            </a>
+        </div> 
+
+        <div class="nav-links"> 
+            <a href="#about">关于NEXUS</a>
+            <a href="#rooms">特工基地</a> 
+            <a href="#themes">主题地图房</a> 
+            <a href="#membership">无畏会员</a> 
+            <a href="#dining">能量补给</a> 
+            <a href="#recovery">赛后理疗</a>
+            <a href="#gear">无畏军械库</a> 
+        </div> 
+
+        <div class="nav-right">
+            <a href="#" class="login-btn" onclick="alert('唤起登录终端 / LOGIN TERMINAL...')">LOGIN / 登录</a>
+        </div>
+    </nav> 
+    
+    <header> 
+        <div class="header-bg"></div>
+        <div class="header-overlay"></div>
+        <div class="header-content">
+            <img src="nexus_logo.jpg" class="hero-logo" alt="NEXUS LOGO" onerror="this.style.display='none'"> 
+            
+            <p class="header-info-text">赛事级专业电竞酒店</p>
+            
+            <h1>NEXUS SHANGHAI</h1>
+            <div class="hero-subtitle">CHARGING STATION</div>
+
+            <p style="color: #ccc; margin-top: 10px; font-size: 1.1rem; line-height: 1.6;"> 
+                CN赛区 VCT 官方指定下榻点<br> 
+                全屋实装 RYZEN 9800X3D | Zowie 540Hz | 0延迟接入 
+            </p>
+        </div>
+    </header> 
+
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <h2 class="about-title">ABOUT NEXUS</h2>
+            <div class="about-mission">
+                <div class="corner-deco tl"></div>
+                <div class="corner-deco tr"></div>
+                <div class="corner-deco bl"></div>
+                <div class="corner-deco br"></div>
+                
+                <p class="about-text">
+                    NEXUS 是全球首家深度沉浸式电竞赛事酒店。<br>
+                    这里不仅仅是一个休憩的场所，更是连接虚拟战场与现实世界的传送门。
+                </p>
+                <p class="about-text">
+                    我们的愿景是将这里打造成一个<span style="color:var(--color-cyan); font-weight:bold;">聚集全球玩家的俱乐部</span>。<br>
+                    无论你是追求极致排位的顶尖高手，还是享受战术博弈的指挥官，<br>
+                    NEXUS 都为你提供职业级的外设环境与全天候的电竞社群氛围。<br>
+                    加入我们，在上海的心脏地带，体验属于特工的极致生活方式。
+                </p>
+                <div style="font-family:var(--font-main); color:var(--color-purple); letter-spacing:3px; margin-top:20px;">
+                    // DEFY THE LIMITS //
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section" id="rooms"> 
+        <h2 class="section-title">DEPLOYMENT ZONES <span style="font-size:1rem; color:#666">常规部署舱</span></h2> 
+        <div class="cards-grid"> 
+            <div class="card"> 
+                <div class="card-img-box">      
+                    <img src="images/room_single.jpg" alt="Single Room" onerror="this.style.display='none'"> 
+                </div> 
+                <div class="card-content"> 
+                    <h3>决斗者单人舱</h3> 
+                    <p style="color:#888; font-size:0.9rem">为突破手设计。全屋灯光与HP联动。</p> 
+                    <div class="specs-box"> 
+                        > GPU: RTX 5080 16GB<br> 
+                        > Screen: ZOWIE XL2586X (540Hz)<br> 
+                        > Net: 10Gbps Fiber 
+                    </div> 
+                    <button class="book-btn" onclick="openBooking('single')">查看详情 & 预订</button> 
+                </div> 
+            </div> 
+            <div class="card"> 
+                <div class="card-img-box">      
+                    <img src="images/room_double.jpg" alt="Double Room" onerror="this.style.display='none'"> 
+                </div> 
+                <div class="card-content"> 
+                    <h3>双子星协议房</h3> 
+                    <p style="color:#888; font-size:0.9rem">协同作战，100%同步率。含双子补给包。</p> 
+                    <div class="specs-box"> 
+                        > 2x RTX 5080 Stations<br> 
+                        > 2x ROG Swift OLED PG27AQDP<br> 
+                        > 外设自选  
+                    </div> 
+                    <button class="book-btn" onclick="openBooking('double')">查看详情 & 预订</button> 
+                </div> 
+            </div> 
+            <div class="card"> 
+                <div class="card-img-box"> 
+                    <img src="images/room_team.jpg" alt="Team Room" onerror="this.style.display='none'"> 
+                </div> 
+                <div class="card-content"> 
+                    <h3>战术小队五黑套房</h3> 
+                    <p style="color:#888; font-size:0.9rem">小型训练室。包含战术沙盘与教练位。</p> 
+                    <div class="specs-box"> 
+                        > 5x RTX 5080 Ti 24GB<br> 
+                        > 100寸 战术复盘屏<br> 
+                        > 5x Zowie 540Hz 
+                    </div> 
+                    <button class="book-btn" onclick="openBooking('team')">查看详情 & 预订</button> 
+                </div> 
+            </div> 
+        </div> 
+    </section> 
+    
+    <section class="section" id="themes" style="border-top: 1px solid #333;"> 
+        <h2 class="section-title" style="border-left-color: var(--color-purple);"> 
+            MAP PROTOCOLS      
+            <span style="font-size:0.9rem; color:#666;"> 
+                ← SWITCH VIEW → 
+            </span> 
+        </h2> 
+        <div class="carousel-wrapper">  
+            <div class="carousel-nav nav-prev" onclick="moveCarousel(-1)">‹</div>  
+            <div id="carousel-container" style="position:relative; width:100%; height:100%; display:flex; justify-content:center; align-items:center;">  
+            </div>
+            <div id="carousel-counter" class="carousel-counter">01 / 06</div>
+            <div class="carousel-nav nav-next" onclick="moveCarousel(1)">›</div>  
+        </div>  
+    </section> 
+    
+    <section class="section" id="membership"> 
+        <h2 class="section-title" style="border-left-color: var(--color-gold);">MEMBERSHIP <span style="font-size:1rem; color:#666">会员体系</span></h2> 
+        <div class="membership-grid"> 
+            <div class="member-card vip"> 
+                <h3 class="member-title" style="color: var(--color-gold);">无畏先锋会籍</h3> 
+                <span class="member-price" style="color: var(--color-gold);">¥ 999 <span style="font-size:1rem">/ 年</span></span> 
+                <ul class="member-list"> 
+                    <li>全年订房 8折 优惠</li> 
+                    <li>优先锁定赛事日(VCT CN)紧俏房源</li> 
+                    <li>每季度领取实体酒店限定武器皮肤周边</li> 
+                </ul> 
+                <button class="book-btn" style="border-color:var(--color-gold); color:var(--color-gold);" onclick="alert('系统正在对接支付接口...')">申请加入 // VANGUARD</button> 
+            </div> 
+            <div class="member-card pass"> 
+                <h3 class="member-title" style="color: var(--color-green);">赛季通行证</h3> 
+                <span class="member-price" style="color: var(--color-green);">¥ 299 <span style="font-size:1rem">/ 3个月</span></span> 
+                <ul class="member-list"> 
+                    <li>有效期内享 5 次入住折扣</li> 
+                    <li>赠送赛季限定周边（T恤/帽子）</li> 
+                    <li>网吧训练区免费时长 +10小时</li> 
+                </ul> 
+                <button class="book-btn" style="border-color:var(--color-green); color:var(--color-green);" onclick="alert('通行证购买通道开启中...')">解锁 // BATTLEPASS</button> 
+            </div> 
+        </div> 
+    </section> 
+    
+    <section class="section" id="dining"> 
+        <h2 class="section-title" style="border-left-color: var(--color-pink);">STIM BEACON BAR <span style="font-size:1rem; color:#666">能量补给与酒吧</span></h2> 
+        <div class="dining-container"> 
+            <div class="dining-box"> 
+                <h3 style="color: var(--color-purple); font-size: 1.8rem; margin-bottom: 20px;">THE SPIKE BAR</h3> 
+                <div class="menu-item"><span class="menu-name">猎枭之眼 (Drone)</span><span class="menu-name" style="color:var(--color-cyan)">¥ 48</span></div> 
+                <div class="menu-desc">蓝色柑橘与伏特加的碰撞，附无人机冰块。</div> 
+                <br> 
+                <div class="menu-item"><span class="menu-name">炼狱燃烧瓶 (Molly)</span><span class="menu-name" style="color:var(--color-pink)">¥ 58</span></div> 
+                <div class="menu-desc">辛辣龙舌兰短饮，口感如同火焰灼烧。</div> 
+            </div> 
+            <div class="dining-box" style="border-left-color: var(--color-green);"> 
+                <h3 style="color: var(--color-green); font-size: 1.8rem; margin-bottom: 20px;">RADIANITE KITCHEN</h3> 
+                <div class="menu-item"><span class="menu-name">贤者治愈饭团</span><span class="menu-name">¥ 28</span></div> 
+                <div class="menu-item"><span class="menu-name">捷风定食 (韩式炸鸡)</span><span class="menu-name">¥ 48</span></div> 
+                <div class="menu-item"><span class="menu-name">奇乐科技薯条 (Turret)</span><span class="menu-name">¥ 38</span></div> 
+            </div> 
+        </div> 
+    </section> 
+
+    <section class="section" id="recovery">
+        <h2 class="section-title" style="border-left-color: var(--color-blue);">RECOVERY CENTER <span style="font-size:1rem; color:#666">赛后理疗室</span></h2>
+        <div class="recovery-grid">
+            <div class="recovery-card" style="background-image: url('https://www.aquamaxx.cn/wp-content/uploads/2021/12/sd.jpg');">
+                <div class="rec-content-wrapper">
+                    <h3 class="rec-title">深层水疗舱</h3>
+                    <p class="rec-desc">通过恒温水流循环，缓解肌肉酸痛，快速消除高强度排位后的疲劳感。</p>
+                </div>
+            </div>
+            <div class="recovery-card" style="background-image: url('https://images.pexels.com/photos/3865552/pexels-photo-3865552.jpeg');">
+                <div class="rec-content-wrapper">
+                    <h3 class="rec-title">特工手部护理</h3>
+                    <p class="rec-desc">针对FPS玩家定制的手腕与手指精油按摩，预防腱鞘炎，保持神射手手感。</p>
+                </div>
+            </div>
+            <div class="recovery-card" style="background-image: url('https://images.pexels.com/photos/4325466/pexels-photo-4325466.jpeg');">
+                <div class="rec-content-wrapper">
+                    <h3 class="rec-title">静谧冥想空间</h3>
+                    <p class="rec-desc">隔音的纯净空间，配合香薰与白噪音，帮助你在赛前赛后平复心态。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section" id="gear"> 
+        <h2 class="section-title" style="border-left-color: var(--color-gold);">THE ARMORY <span style="font-size:1rem; color:#666">外设军械库 (住客免费)</span></h2> 
+        <div class="gear-grid"> 
+            <div class="gear-item"><div class="gear-name">Wooting 80HE (2026)</div><div class="gear-price">FREE</div></div> 
+            <div class="gear-item"><div class="gear-name">Finalmouse Ultralight 5</div><div class="gear-price">FREE</div></div> 
+            <div class="gear-item"><div class="gear-name">Razer Viper V3 Pro</div><div class="gear-price">FREE</div></div> 
+            <div class="gear-item"><div class="gear-name">G-PRO X SUPERLIGHT 3</div><div class="gear-price">FREE</div></div> 
+        </div> 
+        <button class="view-more-btn" onclick="alert('跳转至完整装备库列表...')">VIEW MORE / 查看完整清单</button> 
+    </section> 
+    
+    <footer> 
+        <div style="text-align:center; padding:50px; border-top:2px solid #222; color:#444; font-family:var(--font-main);"> 
+            © 2026 NEXUS HOTEL SHANGHAI.<br> 
+            RIOT GAMES TRADEMARKS USED UNDER LICENSE. 
+        </div> 
+    </footer> 
+    
+    <div id="booking-modal"> 
+        <div class="modal-panel"> 
+            <div class="modal-nav-btn modal-prev" onclick="switchModalRoom(-1)">‹</div>
+            <div class="modal-nav-btn modal-next" onclick="switchModalRoom(1)">›</div>
+
+            <div class="close-btn" onclick="closeBooking()">×</div> 
+            <div class="modal-img"> 
+                <img id="modal-img-real" src="" alt="Room Preview"> 
+            </div> 
+            <div id="modal-content-wrapper" class="modal-info"> 
+                <h2 id="modal-title" style="color:var(--color-cyan); margin-bottom:10px;">ROOM TITLE</h2> 
+                <p id="modal-desc" style="color:#aaa; margin-bottom:20px;">Room description.</p> 
+                    
+                <div style="background:#111; padding:15px; border-left:3px solid var(--color-pink);"> 
+                    <h4 style="color:white; margin-bottom:10px;">配置详情 / SPECS (2026)</h4> 
+                    <ul id="modal-specs" style="color:#888; font-family:var(--font-main); font-size:0.9rem; list-style:none;"> 
+                        </ul> 
+                </div> 
+    
+                <div class="modal-price" id="modal-price">¥000</div> 
+                <div style="display:flex; gap:10px; align-items:center; margin-bottom:20px;"> 
+                    <span style="color:#666;">入住日期:</span> 
+                    <input type="text" value="2026-05-21" style="background:#222; border:1px solid #444; color:white; padding:5px; font-family:var(--font-main);" readonly> 
+                </div> 
+    
+                <button class="confirm-btn" onclick="confirmPayment()">确认支付 & 锁定 / LOCK IN</button> 
+            </div> 
+        </div> 
+    </div> 
+    
+    <div id="match-found-overlay"> 
+        <div class="match-text">MATCH FOUND</div> 
+        <div style="color:white; margin-top:20px; font-family:var(--font-main);">房间已锁定 | 欢迎入住 NEXUS</div> 
+    </div> 
+    
+    <script> 
+        // 房型数据库 (本地路径)
+        const roomsData = { 
+            'single': { 
+                title: "决斗者单人舱", 
+                desc: "极致的个人表现舞台。专为Rank战士打造的私密空间。", 
+                price: "¥ 439 / NIGHT", 
+                specs: ["> GPU: NVIDIA RTX 5080 16GB", "> Monitor: ZOWIE XL2586X (540Hz)", "> CPU: Intel i9-16900K", "> Acc: 罗技/雷蛇全家桶可选"], 
+                img: "images/room_single.jpg" 
+            }, 
+            'double': { 
+                title: "双子星协议房", 
+                desc: "背靠背坐席设计，100%战术同步率。含双子补给包。", 
+                price: "¥ 879 / NIGHT", 
+                specs: ["> 2x RTX 5080 Stations", "> 2x ROG Swift OLED PG27AQDP", "> Console: PS6 (Optional)", "> 赠送minibar特调两杯"], 
+                img: "images/room_double.jpg" 
+            }, 
+            'team': { 
+                title: "战术小队五黑套房", 
+                desc: "完整的战队训练环境。备战网吧赛的最佳基地。", 
+                price: "¥ 2,799 / NIGHT", 
+                specs: ["> 5x RTX 5080 Ti (24GB)", "> Monitor: ZOWIE XL2586X", "> 100寸 战术复盘屏", "> 专属网络节点"], 
+                img: "images/room_team.jpg" 
+            },
+            'sunset': { 
+                title: "主题房：日落之城 / SUNSET", 
+                desc: "洛杉矶风格，橙紫渐变霓虹，餐车风格吧台与滑板元素装饰。", 
+                price: "¥ 1,299 / NIGHT", 
+                specs: ["> Theme: LA Sunset", "> GPU: RTX 5080", "> Monitor: ROG 360Hz OLED", "> Gift: 盖克限定周边"], 
+                img: "images/room_sunset.jpg",
+                color: "#ff7b00"
+            }, 
+            'split': { 
+                title: "主题房：霓虹町 / SPLIT", 
+                desc: "极致赛博朋克，高低差错层设计，日式科技风。", 
+                price: "¥ 1,299 / NIGHT", 
+                specs: ["> Theme: Cyberpunk Japan", "> GPU: RTX 5080", "> Monitor: ZOWIE XL2586X", "> Gift: 2026冠军扇"], 
+                img: "images/room_split.jpg",
+                color: "#21e6c1"
+            }, 
+            'haven': { 
+                title: "主题房：隐士修所 / HAVEN", 
+                desc: "东南亚寺庙风格，木质结构与现代电竞的融合。", 
+                price: "¥ 1,299 / NIGHT", 
+                specs: ["> Theme: Temple & Zen", "> GPU: RTX 5080", "> Monitor: ROG 360Hz OLED", "> Gift: 禅意茶具套装"], 
+                img: "images/room_haven.jpg",
+                color: "#d45757"
+            }, 
+            'bind': { 
+                title: "主题房：源工重镇 / BIND", 
+                desc: "还原 A 小道的沙漠风情。设有传送门灯光装置。", 
+                price: "¥ 1,299 / NIGHT", 
+                specs: ["> Theme: Desert Tech", "> GPU: RTX 5080", "> Monitor: ZOWIE XL2586X", "> Gift: 限定键帽"], 
+                img: "images/room_bind.jpg",
+                color: "#dfae47"
+            }, 
+            'icebox': { 
+                title: "主题房：森寒冬港 / ICEBOX", 
+                desc: "全屋冷色调氛围灯，工业金属风家具，极地体验。", 
+                price: "¥ 1,299 / NIGHT", 
+                specs: ["> Theme: Snow & Metal", "> GPU: RTX 5080", "> Monitor: ZOWIE XL2586X", "> Gift: 企鹅玩偶"], 
+                img: "images/room_icebox.jpg",
+                color: "#5ebec9"
+            }, 
+            'lotus': { 
+                title: "主题房：莲华古城 / LOTUS", 
+                desc: "石质纹理墙面与粉色莲花光影，带来平静而专注的竞技心流。", 
+                price: "¥ 1,299 / NIGHT", 
+                specs: ["> Theme: Ruins & Flower", "> GPU: RTX 5080", "> Monitor: ROG 360Hz OLED", "> Gift: 莲花挂饰"], 
+                img: "images/room_lotus.jpg",
+                color: "#e967a5"
+            } 
+        }; 
+
+        // 分组定义，用于弹窗内的切换逻辑
+        const roomGroups = {
+            'regular': ['single', 'double', 'team'],
+            'theme': ['sunset', 'split', 'haven', 'bind', 'icebox', 'lotus']
+        };
+        
+        // 当前弹窗的状态
+        let currentModalGroup = [];
+        let currentModalIndex = 0;
+    
+        // --- 预订弹窗逻辑 ---
+        function openBooking(type) { 
+            // 确定所属分组
+            if (roomGroups.regular.includes(type)) {
+                currentModalGroup = roomGroups.regular;
+            } else if (roomGroups.theme.includes(type)) {
+                currentModalGroup = roomGroups.theme;
+            } else {
+                return; // 未知类型
+            }
+            
+            // 找到当前索引
+            currentModalIndex = currentModalGroup.indexOf(type);
+            
+            // 渲染弹窗内容
+            renderModalContent(type);
+            
+            document.getElementById('booking-modal').style.display = 'flex';
+        }
+
+        function renderModalContent(type) {
+            const room = roomsData[type];
+            if(!room) return;
+
+            const contentWrapper = document.getElementById('modal-content-wrapper');
+            
+            // 添加动画 Class
+            contentWrapper.classList.remove('fade-anim');
+            void contentWrapper.offsetWidth; // 触发重绘
+            contentWrapper.classList.add('fade-anim');
+
+            document.getElementById('modal-title').innerText = room.title;
+            document.getElementById('modal-desc').innerText = room.desc;
+            document.getElementById('modal-price').innerText = room.price;
+            
+            const imgElement = document.getElementById('modal-img-real');
+            imgElement.style.opacity = 0; // 先透明
+            imgElement.src = room.img; 
+            imgElement.style.display = 'block';
+            
+            // 图片加载完成后淡入
+            imgElement.onload = function() {
+                imgElement.style.opacity = 1;
+            };
+            
+            const specsList = document.getElementById('modal-specs');
+            specsList.innerHTML = '';
+            room.specs.forEach(spec => {
+                const li = document.createElement('li');
+                li.innerText = spec;
+                specsList.appendChild(li);
+            });
+        }
+
+        // 弹窗内切换房间
+        function switchModalRoom(direction) {
+            // 计算新索引，支持循环切换
+            currentModalIndex = (currentModalIndex + direction + currentModalGroup.length) % currentModalGroup.length;
+            const newType = currentModalGroup[currentModalIndex];
+            renderModalContent(newType);
+        }
+
+        function closeBooking() {
+            document.getElementById('booking-modal').style.display = 'none';
+        }
+
+        function confirmPayment() {
+            const overlay = document.getElementById('match-found-overlay');
+            closeBooking();
+            overlay.style.display = 'flex';
+            
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                alert("预订成功！确认邮件已发送。");
+            }, 3000);
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('booking-modal');
+            if (event.target == modal) {
+                closeBooking();
+            }
+        }
+
+        // --- 轮播图逻辑 (Theme Rooms) ---
+        const themes = ['sunset', 'split', 'haven', 'bind', 'icebox', 'lotus'];
+        let currentIndex = 0;
+        const container = document.getElementById('carousel-container');
+        const counter = document.getElementById('carousel-counter');
+
+        function initCarousel() {
+            container.innerHTML = ''; 
+            themes.forEach((key, index) => {
+                const data = roomsData[key];
+                const div = document.createElement('div');
+                div.className = 'c-card hidden';
+                div.dataset.index = index;
+                
+                // 删除了配置和深灰色方块，只保留图片和标题
+                div.innerHTML = `
+                    <div class="c-card-img">
+                        <img src="${data.img}" onerror="this.style.display='none'">
+                    </div>
+                    <div class="c-card-info">
+                        <h3>${data.title.split('：')[1]}</h3>
+                        <p>${data.desc}</p>
+                        
+                        <button class="book-btn" style="margin-top:auto" onclick="openBooking('${key}')">SELECT MAP</button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            const cards = document.querySelectorAll('.c-card');
+            cards.forEach((card, i) => {
+                card.className = 'c-card hidden'; 
+                if (i === currentIndex) {
+                    card.className = 'c-card active';
+                } else if (i === (currentIndex - 1 + themes.length) % themes.length) {
+                    card.className = 'c-card prev';
+                } else if (i === (currentIndex + 1) % themes.length) {
+                    card.className = 'c-card next';
+                }
+            });
+            // 更新计数器 (格式: 01 / 06)
+            counter.innerHTML = `<span>0${currentIndex + 1}</span> / 0${themes.length}`;
+        }
+
+        function moveCarousel(direction) {
+            currentIndex = (currentIndex + direction + themes.length) % themes.length;
+            updateCarousel();
+        }
+
+        window.onload = initCarousel;
+    </script> </body> </html>
