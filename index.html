@@ -1,7 +1,9 @@
-<!DOCTYPE html><html lang="zh-CN"><head>
+       <!DOCTYPE html><html lang="zh-CN"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEXUS 2026 | 无畏充能站 - 上海</title>
+    <link rel="icon" href="nexus_logo.jpg">
+    
     <style>
         :root {
             --color-bg: #0f172a;
@@ -343,47 +345,47 @@
         }
         .peripheral .shop-btn { background: var(--color-green); color: black; }
 
-        /* --- [修改] 军械库样式：横向4:3 + 上下留白 --- */
+        /* --- 军械库样式 --- */
         #gear {
             position: relative;
             background-image: url('armory_bg.jpg');
             background-size: cover; background-position: center;
-            border-top: none; /* 去横线 */
+            border-top: none; 
             
-            /* [修改] 宽度和边距 */
             max-width: 1200px;
-            margin: 0 auto 80px auto; /* 居中且底部留白 */
+            margin: 0 auto 80px auto; 
             border-radius: 20px;
             overflow: hidden;
             border: 1px solid #333;
             
             min-height: 80vh;
-            padding: 60px 40px; /* 内部增加边距 */
-            
+            padding: 100px 0; 
             display: flex;
             flex-direction: column;
             justify-content: center; 
             align-items: center;
         }
         #gear::before {
-            /* [修改] 遮罩层 pointer-events: none 以允许点击按钮 */
             content:''; position: absolute; top:0; left:0; width:100%; height:100%;
             background: rgba(0,0,0,0.8); z-index: 0;
-            pointer-events: none; 
+            pointer-events: none; /* 允许点击穿透遮罩 */
         }
         
-        /* [修改] 标题位置 */
+        /* 军械库标题 */
         #gear .section-title {
             position: relative; z-index: 2;
-            align-self: flex-start; /* 位于左上角 */
-            margin-bottom: auto; /* 将其他内容推到底部 */
+            align-self: flex-start; 
+            margin-bottom: auto; 
             margin-top: 20px;
+            margin-left: 40px; /* 稍微留一点边距 */
         }
 
         .gear-grid { 
             position: relative; z-index: 2;
             display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; 
-            margin: 50px 0; width: 100%;
+            margin: 80px 0 50px 0; 
+            align-self: center; 
+            width: 90%; /* 稍微收窄一点，不贴边 */
         } 
         .gear-item { 
             background: rgba(20,20,20,0.6); 
