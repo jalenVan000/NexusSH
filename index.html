@@ -174,7 +174,8 @@
             position: relative; overflow: hidden;
         }
         .viewing-img {
-            flex: 1; min-width: 400px; height: 400px;
+            /* [修改] 去掉固定高度，允许自动填充 */
+            flex: 1; min-width: 400px;
             background-size: cover; background-position: center;
             position: relative;
         }
@@ -247,7 +248,8 @@
             .about-title::before, .about-title::after { width: 30px; }
             h1 { font-size: 3.5rem; }
             .hero-subtitle { font-size: 1.2rem; letter-spacing: 4px; }
-            .viewing-img { width: 100%; min-width: auto; }
+            /* [修改] 移动端给予固定高度 */
+            .viewing-img { width: 100%; min-width: auto; height: 300px; }
         } 
 
         /* --- 会员 & 餐饮 & 外设 --- */
@@ -318,7 +320,6 @@
             display: flex; align-items: flex-end; padding: 30px; transition: 0.3s;
         }
         .shop-card:hover { border-color: var(--color-purple); box-shadow: 0 0 20px rgba(189, 0, 255, 0.2); }
-        /* [新增] 外设店特殊颜色 */
         .shop-card.peripheral:hover { border-color: var(--color-green); box-shadow: 0 0 20px rgba(0, 255, 157, 0.2); }
         
         .shop-card::before {
@@ -331,7 +332,7 @@
         }
         .peripheral .shop-btn { background: var(--color-green); color: black; }
 
-        /* --- [修改] 军械库样式 (大尺寸+Flex布局) --- */
+        /* --- 军械库样式 (大尺寸+Flex布局) --- */
         #gear {
             position: relative;
             background-image: url('armory_bg.jpg');
@@ -747,14 +748,17 @@
     </div> 
     
     <script> 
+        // [新增] 强制页面加载时滚动到顶部
+        window.scrollTo(0, 0);
+
         // 房型数据库 (本地路径)
         const roomsData = { 
             'single': { 
-                title: "决斗者单人舱 (共享卫浴)", // [修改]
+                title: "决斗者单人舱 (共享卫浴)", 
                 desc: "极致的个人表现舞台。专为Rank战士打造的私密空间。", 
-                price: "¥ 329 / NIGHT", // [修改]
+                price: "¥ 329 / NIGHT", 
                 specs: [
-                    "> 房间面积：15m²", // [修改]
+                    "> 房间面积：15m²", 
                     "> GPU: NVIDIA RTX 5080 16GB", 
                     "> Monitor: ZOWIE XL2586X (540Hz)", 
                     "> CPU: Intel i9-16900K", 
@@ -771,7 +775,7 @@
                     "> 2x ROG Swift OLED PG27AQDP", 
                     "> Console: PS6 (Optional)", 
                     "> 赠送minibar特调两杯",
-                    "> 可选择双床房或大床房" // [修改]
+                    "> 可选择双床房或大床房"
                 ], 
                 img: "room_double.jpg" 
             }, 
