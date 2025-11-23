@@ -116,7 +116,6 @@
         }
 
         .hero-logo { 
-            /* [修改] 宽度恢复为 300px */
             width: 300px; 
             height: auto; 
             margin-bottom: 30px; 
@@ -375,12 +374,13 @@
             pointer-events: none; 
         }
         
+        /* [修改] 军械库标题 - 使用绝对定位固定在左上角 */
         #gear .section-title {
-            position: relative; z-index: 2;
-            align-self: flex-start; 
-            margin-bottom: auto; 
-            margin-top: 20px;
-            margin-left: 40px; 
+            position: absolute; 
+            top: 40px;
+            left: 40px;
+            z-index: 2;
+            margin: 0; /* 清除原有边距 */
         }
 
         .gear-grid { 
@@ -555,7 +555,7 @@
 
     <section class="about-section" id="about">
         <div class="about-container">
-            <h2 class="about-title">ABOUT NEXUS</h2>
+            <h2 class="about-title">关于 NEXUS</h2>
             <div class="about-mission">
                 <div class="corner-deco tl"></div>
                 <div class="corner-deco tr"></div>
@@ -580,7 +580,7 @@
     </section>
 
     <section class="section" id="viewing">
-        <h2 class="section-title" style="border-left-color: #ff4655;">TOURNAMENT VIEWING <span style="font-size:1rem; color:#666">线下观赛</span></h2>
+        <h2 class="section-title" style="border-left-color: #ff4655;">赛事观赛 <span style="font-size:1rem; color:#666">TOURNAMENT VIEWING</span></h2>
         <div class="viewing-container">
             <div class="viewing-img" style="background-image: url('viewing.jpg');"></div>
             <div class="viewing-content">
@@ -599,7 +599,7 @@
     </section>
     
     <section class="section" id="rooms"> 
-        <h2 class="section-title">DEPLOYMENT ZONES <span style="font-size:1rem; color:#666">常规部署舱</span></h2> 
+        <h2 class="section-title">特工基地 <span style="font-size:1rem; color:#666">DEPLOYMENT ZONES</span></h2> 
         <div class="cards-grid"> 
             <div class="card"> 
                 <div class="card-img-box">      
@@ -651,7 +651,7 @@
     
     <section class="section" id="themes" style="border-top: 1px solid #333;"> 
         <h2 class="section-title" style="border-left-color: var(--color-purple);"> 
-            MAP PROTOCOLS      
+            主题地图房      
             <span style="font-size:0.9rem; color:#666;"> 
                 ← SWITCH VIEW → 
             </span> 
@@ -666,7 +666,7 @@
     </section> 
     
     <section class="section" id="membership"> 
-        <h2 class="section-title" style="border-left-color: var(--color-gold);">MEMBERSHIP <span style="font-size:1rem; color:#666">会员体系</span></h2> 
+        <h2 class="section-title" style="border-left-color: var(--color-gold);">无畏会员 <span style="font-size:1rem; color:#666">MEMBERSHIP</span></h2> 
         <div class="membership-grid"> 
             <div class="member-card vip"> 
                 <h3 class="member-title" style="color: var(--color-gold);">无畏先锋会籍</h3> 
@@ -692,7 +692,7 @@
     </section> 
     
     <section class="section" id="commercial">
-        <h2 class="section-title" style="border-left-color: white;">COMMERCIAL SPACE <span style="font-size:1rem; color:#666">商业空间</span></h2>
+        <h2 class="section-title" style="border-left-color: white;">商业空间 <span style="font-size:1rem; color:#666">COMMERCIAL SPACE</span></h2>
         
         <div class="commercial-subsection">
             <div class="commercial-subtitle"><span style="color:var(--color-pink)">///</span> STIM BEACON BAR / 能量补给</div>
@@ -761,7 +761,7 @@
     
     <section id="gear"> 
         <div class="armory-header">
-            <h2 class="section-title" style="border-left-color: var(--color-gold);">THE ARMORY <span style="font-size:1rem; color:#666">外设军械库 (住客免费)</span></h2> 
+            <h2 class="section-title" style="border-left-color: var(--color-gold);">无畏军械库 <span style="font-size:1rem; color:#666">THE ARMORY</span></h2> 
         </div>
         <div class="armory-showcase">
             <div class="armory-content">
